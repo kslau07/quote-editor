@@ -1,4 +1,5 @@
 <%# app/views/quotes/destroy.turbo_stream.erb %>
 
-<%= turbo_stream.remove "quote_#{@quote.id}" %>
+<%#= turbo_stream.remove "quote_#{@quote.id}" %> 		<!-- lh syntax -->
+<%= turbo_stream.remove @quote %>										<!-- syntactical sugar -->
 

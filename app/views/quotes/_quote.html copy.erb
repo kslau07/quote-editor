@@ -1,7 +1,7 @@
 <%# app/views/quotes/_quote.html.erb %>
 
 <%#= turbo_frame_tag "quote_#{quote.id}" do %>          
-<%= turbo_frame_tag quote do %>                         <!-- syntactic sugar for #dom_id -->
+<%= turbo_frame_tag quote do %>                         <!-- syntactic sugar for dom_id(record) -->
   <div class="quote">
     <%= link_to quote.name,
                 quote_path(quote),
