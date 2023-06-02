@@ -1,1 +1,65 @@
-// Entry point for your Sass build
+// app/assets/stylesheets/application.sass.scss
+
+// Review BEM CSS here
+// https://www.hotrails.dev/turbo-rails/css-ruby-on-rails
+
+// 1. (B)locks - Each component (or block) should have a unique name. Let's imagine a card component in our application. The .card CSS class should be defined in the card.scss file and its name should be unique. That's the letter B in "BEM", and it stands for block.
+// 2. (E)lements - Each block can have many elements. If we take back our card example, each card may have a title and a body. In BEM we will name the corresponding CSS classes .card__title and .card__body. We ensure that naming conflicts are not possible by prefixing the element's name with the block's name. If we have another block .box with a title and a body, .box__title and .box__body won't conflict with .card__title and .card__body thus making sure there won't be any conflicts between those classes. That's the letter E in "BEM", and it stands for element.
+// 3. (M)odifiers - Each block may have modifiers. If we take back our card example, maybe they can have different colors. The names of the modifiers could be .card--primary and .card--secondary. That's the letter M in "BEM", and it stands for modifiers.
+
+// My example of BEM
+// A "card" is a block (ie component)
+// A card may have many elements. A card probably has a title and body.
+//    .card__title and .card__body is how we name these block elements
+// A card may have many variants or "modifiers", eg sizes, colors
+//    .card--big and .card--red is how we name these modifiers
+
+// Example markup would look like this
+// Note that the <a> tag includes 3 different BEM class tags: btn, btn--big, and btn--orange
+// So if we wanted a small yellow button, we first include "btn", then "btn--small", then "btn--yellow"
+// <a class="btn btn--big btn--orange" href="https://css-tricks.com">
+//   <span class="btn__price">$9.99</span>
+//   <span class="btn__text">Subscribe</span>
+// </a>
+
+// Write scss + BEM like this:
+// .block {
+// 	&__element {
+// 		 //some styles here
+// 	}
+// 	&--mod {
+// 		 //some styles here
+// 	}
+// }
+// Which will result in this:
+// .block {
+// 	//some styles here
+// }
+// .block--mod {
+//  //some styles here
+// }
+// .block__element {
+//  //some styles here
+// }
+
+
+
+// Mixins
+@import "mixins/media";
+@import "mixins/test_mixin";										// delete me
+
+// Configuration
+@import "config/variables";
+@import "config/reset";
+
+// Components
+@import "components/btn";
+@import "components/error_message";
+@import "components/form";
+@import "components/visually_hidden";
+@import "components/quote";
+@import "components/turbo_progress_bar";
+
+// Layouts
+@import "layouts/container";
+@import "layouts/header";

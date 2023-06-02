@@ -1,0 +1,23 @@
+@mixin circle {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: #ea0185;
+}
+
+.circle {
+	@include circle;
+}
+
+// With arguments
+
+@mixin oval($width,$height,$color) {
+	width: $width;
+	height: $height;
+	background: $color;
+	border-radius: 50%;
+}
+
+.my-example {
+	background-color: black;
+}

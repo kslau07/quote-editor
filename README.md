@@ -1,6 +1,43 @@
+# Rails Turbo Tutorial
 
 Tutorial is here:
 https://www.hotrails.dev/turbo-rails/crud-controller-ruby-on-rails
+
+@quote vs quote
+	edit.html.erb -> uses @quote
+		~ is passed @quote from the controller
+	_quote.html.erb -> uses quote
+		~ is passed a m/i from index
+
+What's going on turbo frames here?
+First, note that we use `"quote_#{quote.id}"` to uniquely name the frame.
+Part of tut found here:
+	find this on page (~50%): "We need a Turbo Frame of the same id around the form of the Quotes#edit page:"
+	https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+_quote passes in the correct quote m/i to edit.html.erb
+The thing that we thought was a wrapper is the actual frame that is switched out.
+Both sides have a  `"quote_#{quote.id}"` frame, just as it was demonstrated before.
+
+
+<%= link_to quote.name, quote_path(quote)>						# path helper for model instance (record)
+
+Added before_action -> { sleep 3 } to ApplicationController to check out the progress bar.
+
+Use `bin/setup` as it installs gems, installs js dependencies, and creates, migrates, and seeds the db.
+
+Use `bin/dev` instead of `rails server` as it updates scss changes (and js too).
+
+Chrome Devtools:Network (data: { turbo: true/false })
+* GET "fetch" is an AJAX request
+	- We see this with data: { turbo: true }
+	- Fewer GET requests in total
+* GET "document" is a normal HTTP GET
+	- We see this with data: { turbo: false }
+	- Lots of GETs seen
+
+Sass CSS: Do not forget to include sass in Gemfile. Run `bundle install`
+
+After completion of tutorial, go back and review css methodology, mixin, config and components.
 
 We add a .scss file
 	// app/assets/stylesheets/mixins/_media.scss
@@ -57,7 +94,7 @@ We may choose to use the form and error partials from here in other projects.
 
 Recall that %i[index show update] is an array of symbols.
 
-**bin/rails test:system** Run tests 
+**bin/rails test:system** Run tests (Capybara?)
 
 **bin/setup** -> install dependencies and create the database (???)
 Read more here: https://thoughtbot.com/blog/bin-setup
