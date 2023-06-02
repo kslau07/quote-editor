@@ -6,7 +6,7 @@ https://www.hotrails.dev/turbo-rails/crud-controller-ruby-on-rails
 @quote vs quote
 	edit.html.erb -> uses @quote
 		~ is passed @quote from the controller
-	_quote.html.erb -> uses quote
+	_quote.html.erb -> uses quote 
 		~ is passed a m/i from index
 
 What's going on turbo frames here?
