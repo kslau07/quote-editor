@@ -3,6 +3,14 @@
 Tutorial is here:
 https://www.hotrails.dev/turbo-rails/crud-controller-ruby-on-rails
 
+Creating a new quote with Turbo Frames:
+1. Clicking "New quote" will bring up a form under header
+	i. Where there was empty space, there will be a form to add the quote
+2. Clicking "Create quote" will persist the new quote, and will remove the form.
+3. The "empty form" and the "new form" must have the same `turbo-frame id`
+	i. Use `turbo_frame_tag @quote` which uses #dom_id(record)
+
+
 @quote vs quote
 	edit.html.erb -> uses @quote
 		~ is passed @quote from the controller

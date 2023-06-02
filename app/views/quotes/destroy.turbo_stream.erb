@@ -1,5 +1,9 @@
 <%# app/views/quotes/destroy.turbo_stream.erb %>
 
+<!--
+	This erb code sends this: <turbo-stream action="remove" target="quote_908005749"></turbo-stream>
+-->
+
 <%#= turbo_stream.remove "quote_#{@quote.id}" %> 		<!-- lh syntax -->
 <%= turbo_stream.remove @quote %>										<!-- syntactical sugar -->
 

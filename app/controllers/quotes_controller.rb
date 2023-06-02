@@ -16,7 +16,15 @@ class QuotesController < ApplicationController
     @quote = Quote.new(quote_params)
 
     if @quote.save
-      redirect_to quotes_path, notice: 'Quote was successfully created.'
+
+      # Tell quotes_con that it needs to support both the html and turbo_stream formats
+
+      respond_to do |format|
+        format.html { redirect_to quotes_path, notice: 'Quote was successfully created.' }
+        format.turbo_stream
+      end
+
+      # redirect_to quotes_path, notice: 'Quote was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,9 +45,11 @@ class QuotesController < ApplicationController
     @quote.destroy
     respond_to do |format|
 
-      # This code supports both the HTML and TURBO_STREAM formats (??) ~> https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+      #In the controller, let's support both the HTML and the TURBO_STREAM formats thanks to the respond_to method:
+      # https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+
       format.html { redirect_to quotes_path, notice: 'Quote was succesfully destroyed.' }
-      format.turbo_stream                     # Sends this: <turbo-stream action="remove" target="quote_908005749"></turbo-stream>
+      format.turbo_stream                                                       # sends this view: app/views/quotes/destroy.turbo_stream.erb
 
       # redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
     end
