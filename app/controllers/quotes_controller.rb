@@ -35,7 +35,14 @@ class QuotesController < ApplicationController
 
   def destroy
     @quote.destroy
-    redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
+    respond_to do |format|
+
+      # This code supports both the HTML and TURBO_STREAM formats (??) ~> https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+      format.html { redirect_to quotes_path, notice: 'Quote was succesfully destroyed.' }
+      format.turbo_stream                     # Sends this: <turbo-stream action="remove" target="quote_908005749"></turbo-stream>
+
+      # redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
+    end
   end
 
   private
