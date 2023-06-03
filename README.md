@@ -3,6 +3,19 @@
 Tutorial is here:
 https://www.hotrails.dev/turbo-rails/crud-controller-ruby-on-rails
 
+Adding a cancel button:
+https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+`<%= link_to "Cancel", quotes_path, class: "btn btn--light" %>`
+My summary: the author uses a kind of side-effect to achieve "cancel"
+	* Turbo Frames will switch frames with the same dom_id. 'quotes_path' is #index, which contains a frame with  id 'new_quote' (which is blank/hidden until user clicks 'New quote' btn).
+	* TF switches the form with the blank located on #index. both dom_ids ='new_quote' (we can check devtools, the empty frame is there)
+When our user clicks on the "Cancel" link for the new quote form:
+	1. The link is within a Turbo Frame of id new_quote, so Turbo will only replace the content of this frame
+	2. The link navigates to the Quotes#index page that contains an empty Turbo Frame with id new_quote
+	3. Turbo replaces the content of the new_quote frame with the empty content, so the form disappears
+
+
+
 Creating a new quote with Turbo Frames:
 1. Clicking "New quote" will bring up a form under header
 	i. Where there was empty space, there will be a form to add the quote

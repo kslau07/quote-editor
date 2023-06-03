@@ -8,6 +8,28 @@
 	2. The second line tells Turbo to update the Turbo Frame with id new_quote with empty content.
 -->
 
-<%= turbo_stream.append 'quotes', partial: 'quotes/quote', locals: { quote: @quote } %>    <!-- added id 'quotes' in next step -->
-<%= turbo_stream.update Quote.new, "" %>
+<!-- 
+
+	# Very long-hand way to write
+	<%= turbo_stream.prepend 'quotes', partial: 'quotes/quote', locals: { quote: @quote } %>
+
+	# Alternative to above (instead of 1 long line)
+	<%= turbo_stream.prepend "quotes" do %>
+		<%= render partial: "quotes/quote", locals: { quote: @quote } %>
+	<% end %>
+
+	# Even shorter
+	<%= turbo_stream.prepend "quotes" do %>
+		<%= render @quote %>
+	<% end %>
+
+	# Shortest!
+	<%= turbo_stream.prepend "quotes", @quote %>
+-->
+
+<%= turbo_stream.prepend "quotes", @quote %>
+
+<!-- Update the frame with dom_id(Quote.new) with blank content ('') -->
+<!-- If we add text to the quotes, it shows up in frame -->
+<%= turbo_stream.update Quote.new, '' %>
 
