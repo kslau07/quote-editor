@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Learn to make a quote editor in Rails with Hotwire and Turbo</title>
+      <meta name="description" content="See the live example of the quote editor inspired by a real-world project we will build in the Turbo Rails Tutorial.">
+      <link rel="canonical" href="https://www.hotrails.dev/quotes">
+      <meta property="og:title" content="Learn to make a quote editor in Rails with Hotwire and Turbo" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.hotrails.dev/quotes" />
+      <meta property="og:image" content="https://www.hotrails.dev/assets/cover-ae550bddad70a5f704f337843fd672c8b632574ae3619175e7fc82dc90b0417b.png" />
+      <meta property="og:description" content="See the live example of the quote editor inspired by a real-world project we will build in the Turbo Rails Tutorial." />
+      <meta property="og:site_name" content="Learn to make a quote editor in Rails with Hotwire and Turbo" />
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@alexandre_ruban">
+      <meta name="twitter:title" content="Learn to make a quote editor in Rails with Hotwire and Turbo">
+      <meta name="twitter:description" content="See the live example of the quote editor inspired by a real-world project we will build in the Turbo Rails Tutorial.">
+      <meta name="twitter:creator" content="@alexandre_ruban">
+      <meta name="twitter:image:src" content="https://www.hotrails.dev/assets/cover-ae550bddad70a5f704f337843fd672c8b632574ae3619175e7fc82dc90b0417b.png">
+      <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="manifest" href="/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff">
+      <meta name="csrf-param" content="authenticity_token" />
+      <meta name="csrf-token" content="5kBDxZDa0IJwQ7pxBnKPygOQvPYnNzcZ12skXqUlsZRagYLXFHv0vu_-3T-XiWEgjryV6qSnhtFakOHODC3Czw" />
+      <link rel="preload" href="/assets/lato-bold-6947fc29162e936613517e72ac521f26eb062eb87c4775bfc2882978e50088fd.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/lato-italic-8aa2aa17f9465b7ef9bd893f27db56890e89451858d188d0b1d573032ac1d853.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/lato-regular-9cb3efc71877023cce1b773447949e4f518c0edea4a0d52c1c1ac90e3e0b50c0.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/merriweather-bold-99270339e22da613dd88af5f187b26385d967bd669b4a6753925a4ef56ae5fd3.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/merriweather-italic-2f49dcb2f668a623dcf33c7cddd3a46ac5152b953ef7de611c6988c8650c4874.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/merriweather-regular-bf5efeca6b3b70426d6b817f866665872830dbaed049a622ca78783ef040b1ae.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" href="/assets/virgil-0db257ccdf35bfb1679dea39003bd6fc5eb22b2b001823d17bd83d42f313b19d.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+      <link rel="stylesheet" href="/assets/application-18c3a1635ed8eac6a1152ff47edb650041376f6b7b0a53d412978d0f4a64a428.css" data-turbo-track="reload" />
+      <script src="/assets/application-c0b200dd7e1226687181137344c9761a61cf80fb7c702b0588360c473f57c658.js" data-turbo-track="reload" defer="defer"></script>
+      <script defer data-domain="hotrails.dev" data-api="/hotrails/event" src="https://www.hotrails.dev/hotrails/script.js"></script>
+      <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+   </head>
+   <body>
+      <div class="announcement">
+         <div class="announcement__text">
+            The rebuilding turbo-rails tutorial is out!
+         </div>
+         <a class="announcement__link" href="/rebuilding-turbo-rails">View new course &rarr;</a>
+      </div>
+      <header class="navbar" data-controller="navbar" data-action="scroll@window->navbar#scroll" data-navbar-active-class="navbar--active">
+         <div class="navbar__logo">
+            <svg viewbox="0 0 41 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+               <path d="M20.5 31L1 7M20.5 31L40 7M20.5 31L7.5 9M20.5 31L16.1667 9M20.5 31L24.8333 9M20.5 31L33.5 9M1 7L5.875 1M1 7L7.5 9M5.875 1L10.75 7M5.875 1H10.75H15.625M10.75 7L15.625 1M10.75 7L7.5 9M10.75 7L16.1667 9M15.625 1L20.5 7M20.5 7L25.375 1M20.5 7L16.1667 9M20.5 7L24.8333 9M25.375 1L30.25 7M25.375 1H30.25H35.125M30.25 7L35.125 1M30.25 7L24.8333 9M30.25 7L33.5 9M35.125 1L40 7M40 7L33.5 9" />
+            </svg>
+            <a class="navbar__brand" href="/">Hotrails</a>
+         </div>
+         <input type="checkbox" role="button" id="hamburger" class="navbar__checkbox visually-hidden">
+         <label class="navbar__toggle" for="hamburger">
+         <span class="navbar__toggle-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Menu</span>
+         </label>
+         <div class="navbar__links">
+            <a class="navbar__link" href="/rebuilding-turbo-rails">
+               Rebuilding Turbo Rails tutorial
+               <div class="badge badge--tertiary badge--rotate">
+                  new
+               </div>
+            </a>
+            <a class="navbar__link" href="/turbo-rails">Turbo Rails tutorial</a>
+            <a class="navbar__link" href="/articles">Articles</a>
+            <a class="navbar__link" href="/quotes">Quote editor</a>
+         </div>
+      </header>
+      <turbo-frame id="flash"></turbo-frame>
+      <turbo-cable-stream-source channel="Turbo::StreamsChannel" signed-stream-name="IloybGtPaTh2YUc5MGNtRnBiSE12UTJGeWRDOHhOekV5T1E6cXVvdGVzIg==--fe0bbb43d21a6306f62763f48fbf87b46314709b8de65998edf7f1082529a681"></turbo-cable-stream-source>
+      <main class="container">
+         <p class="note">
+            This single-page quote editor was build with Turbo and... <strong>a single line</strong>
+            of custom JavaScript for the flash message animation.
+            If you want to learn how it is made, you can read the <a href="/">Turbo Rails tutorial</a>.
+         </p>
+         <div class="header">
+            <h1>Quotes</h1>
+            <a class="btn btn--primary" data-turbo-frame="new_quote" href="/quotes/new">Add quote</a>
+         </div>
+         <turbo-frame id="new_quote">
+            <div class="empty-state">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" height="24" width="24" stroke="currentColor" class="empty-state__icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+               </svg>
+               <div class="empty-state__title">
+                  You don't have any quotes yet
+               </div>
+               <div class="empty-state__subtitle">
+                  Get started by creating a new quote.
+               </div>
+               <a class="btn btn--primary" data-turbo-frame="new_quote" href="/quotes/new">Add quote</a>
+            </div>
+         </turbo-frame>
+         <turbo-frame id="quotes"></turbo-frame>
+      </main>
+   </body>
+</html>
